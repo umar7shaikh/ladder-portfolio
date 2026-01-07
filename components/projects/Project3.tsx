@@ -6,8 +6,8 @@ import { useRef, useState, useEffect } from "react";
 
 export default function Project3() {
   const carouselControls = useAnimationControls();
-  const carouselRef = useRef(null);
-  const sectionRef = useRef(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [totalWidth, setTotalWidth] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);

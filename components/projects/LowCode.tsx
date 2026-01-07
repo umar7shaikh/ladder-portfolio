@@ -6,8 +6,8 @@ import { useRef, useState, useEffect } from "react";
 
 export default function LowCode() {
   const carouselControls = useAnimationControls();
-  const carouselRef = useRef(null);
-  const sectionRef = useRef(null); // NEW: Track entire section
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null); // NEW: Track entire section
   const [totalWidth, setTotalWidth] = useState(0);
   const [isInView, setIsInView] = useState(false); // NEW: Only animate when visible
   const [hasAnimated, setHasAnimated] = useState(false); // NEW: Track if ever animated

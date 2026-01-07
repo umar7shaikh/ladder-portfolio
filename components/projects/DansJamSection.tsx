@@ -6,8 +6,8 @@ import { useEffect, useState, useRef } from "react";
 
 export default function DansJamSection() {
   const carouselControls = useAnimationControls();
-  const carouselRef = useRef(null);
-  const sectionRef = useRef(null); // NEW: Track section visibility
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null); // NEW: Track section visibility
   const [totalWidth, setTotalWidth] = useState(0);
   const [isInView, setIsInView] = useState(false); // NEW: Visibility tracking
   const [hasAnimated, setHasAnimated] = useState(false); // NEW: First-time tracking
