@@ -175,7 +175,7 @@ export default function DansJamSection() {
                   onDragEnd={(event, info) => {
                     if (totalWidth > 0 && isInView) {
                       carouselControls.start({
-                        x: [info.x, -totalWidth],
+                        x: [info.offset.x, -totalWidth],
                         transition: {
                           duration: 120,
                           ease: "linear",
