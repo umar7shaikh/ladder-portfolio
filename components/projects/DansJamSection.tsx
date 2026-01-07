@@ -2,35 +2,15 @@
 
 import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function DansJamSection() {
   const carouselControls = useAnimationControls();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  // Infinite auto-scroll animation
-  useEffect(() => {
-    if (isMobile) {
-      const animate = async () => {
-        await carouselControls.start({
-          x: [0, -1400], // Total width of all images + gaps
-          transition: {
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          },
-        });
-      };
-      animate();
-    }
-  }, [isMobile, carouselControls]);
+  const carouselRef = useRef(null);
+  const sectionRef = useRef(null); // NEW: Track section visibility
+  const [totalWidth, setTotalWidth] = useState(0);
+  const [isInView, setIsInView] = useState(false); // NEW: Visibility tracking
+  const [hasAnimated, setHasAnimated] = useState(false); // NEW: First-time tracking
 
   const allImages = [
     { src: "/projects/dans-jam/ss1.png", alt: "Dan's Jam hero section", aspect: "9/16" },
@@ -40,10 +20,61 @@ export default function DansJamSection() {
     { src: "/projects/dans-jam/ss5.svg", alt: "Mobile contact form", aspect: "16/9" },
   ];
 
+  // NEW: Intersection Observer for section visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+        }
+      },
+      { 
+        threshold: 0.2,
+        rootMargin: "50px"
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
+  // Calculate total width ONLY when visible
+  useEffect(() => {
+    if (carouselRef.current && hasAnimated) {
+      const scrollContainer = carouselRef.current.querySelector('.scroll-container');
+      if (scrollContainer) {
+        const width = scrollContainer.scrollWidth / 3;
+        setTotalWidth(width);
+      }
+    }
+  }, [hasAnimated]);
+
+  // Start/Stop animation based on visibility
+  useEffect(() => {
+    if (totalWidth > 0) {
+      if (isInView) {
+        carouselControls.start({
+          x: [0, -totalWidth],
+          transition: {
+            duration: 120,
+            ease: "linear",
+            repeat: Infinity,
+          },
+        });
+      } else {
+        carouselControls.stop();
+      }
+    }
+  }, [totalWidth, carouselControls, isInView]);
+
   return (
     <>
       {/* MOBILE: Single Beautiful Scroll Experience */}
-      <section className="lg:hidden relative w-full bg-black">
+      <section ref={sectionRef} className="lg:hidden relative w-full bg-black">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
           <div className="w-full h-full bg-[image:radial-gradient(circle,rgba(255,255,255,0.15)_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -113,7 +144,7 @@ export default function DansJamSection() {
             </div>
           </motion.div>
 
-          {/* Main Auto-Scrolling Carousel - ALL IMAGES */}
+          {/* Main Auto-Scrolling Carousel - OPTIMIZED */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -126,42 +157,63 @@ export default function DansJamSection() {
             <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
             
             {/* Scrolling Container */}
-            <div className="overflow-hidden">
-              <motion.div
-                animate={carouselControls}
-                className="flex gap-4 px-6"
-                style={{ width: "max-content" }}
-              >
-                {/* Triple loop for seamless infinite scroll */}
-                {[...Array(3)].map((_, setIndex) => (
-                  <div key={setIndex} className="flex gap-4">
-                    {allImages.map((image, idx) => (
-                      <motion.div
-                        key={idx}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        className={`relative flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl ${
-                          image.aspect === "16/9" 
-                            ? "aspect-video w-[320px]" 
-                            : "aspect-[9/16] w-[220px]"
-                        }`}
-                      >
-                        {/* Glow Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 via-transparent to-purple-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300 z-10" />
-                        
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          className="object-cover"
-                          quality={90}
-                          sizes="320px"
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
+            <div ref={carouselRef} className="overflow-hidden">
+              {/* Only render when visible */}
+              {hasAnimated && (
+                <motion.div
+                  drag="x"
+                  dragConstraints={{ right: 0, left: -totalWidth }}
+                  dragElastic={0.1}
+                  dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+                  animate={carouselControls}
+                  onDragStart={() => carouselControls.stop()}
+                  onDragEnd={() => {
+                    if (totalWidth > 0 && isInView) {
+                      carouselControls.start({
+                        x: [null, -totalWidth],
+                        transition: {
+                          duration: 120,
+                          ease: "linear",
+                          repeat: Infinity,
+                        }
+                      });
+                    }
+                  }}
+                  className="flex gap-4 px-6 cursor-grab active:cursor-grabbing scroll-container"
+                  style={{ width: "max-content" }}
+                >
+                  {/* Triple loop for seamless infinite scroll */}
+                  {[...Array(3)].map((_, setIndex) => (
+                    <div key={setIndex} className="flex gap-4">
+                      {allImages.map((image, idx) => (
+                        <motion.div
+                          key={idx}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                          className={`relative flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl ${
+                            image.aspect === "16/9" 
+                              ? "aspect-video w-[320px]" 
+                              : "aspect-[9/16] w-[220px]"
+                          }`}
+                        >
+                          {/* Glow Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 via-transparent to-purple-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300 z-10" />
+                          
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            className="object-cover"
+                            quality={90}
+                            sizes="320px"
+                            loading="lazy"
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                  ))}
+                </motion.div>
+              )}
             </div>
           </motion.div>
 
