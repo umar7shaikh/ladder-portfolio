@@ -44,8 +44,13 @@ export default function Project3() {
     if (carouselRef.current && hasAnimated) {
       const scrollContainer = carouselRef.current.querySelector('.scroll-container');
       if (scrollContainer) {
-        const width = scrollContainer.scrollWidth / 3;
-        setTotalWidth(width);
+        // Get the actual scrollable width (all 3 sets of images)
+        const totalScrollWidth = scrollContainer.scrollWidth;
+        // We need to scroll enough to reveal one complete set + container width
+        const containerWidth = carouselRef.current.offsetWidth;
+        // Calculate the width needed to scroll through one full set
+        const singleSetWidth = (totalScrollWidth / 3) + containerWidth;
+        setTotalWidth(singleSetWidth);
       }
     }
   }, [hasAnimated]);
@@ -162,10 +167,10 @@ export default function Project3() {
                   dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
                   animate={carouselControls}
                   onDragStart={() => carouselControls.stop()}
-                  onDragEnd={() => {
+                  onDragEnd={(event, info) => {
                     if (totalWidth > 0 && isInView) {
                       carouselControls.start({
-                        x: [null, -totalWidth],
+                        x: [info.x, -totalWidth],
                         transition: {
                           duration: 120,
                           ease: "linear",
