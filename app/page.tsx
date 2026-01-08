@@ -16,6 +16,7 @@ import Project14 from "@/components/projects/Project14";
 import Project15 from "@/components/projects/Project15";
 import Project16 from "@/components/projects/Project16";
 import HeroSection from "@/components/hero/HeroSection";
+import ContactSection from "@/components/contact/ContactSection";
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
       <Project14 />
       <Project15 />
       <Project16 />
+      <ContactSection />
 
       
     </>
