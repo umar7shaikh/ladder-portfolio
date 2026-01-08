@@ -3,6 +3,7 @@
 import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import { Palette, Compass, Smartphone, Zap } from "lucide-react";
 
 export default function LowCode() {
   const carouselControls = useAnimationControls();
@@ -46,36 +47,18 @@ export default function LowCode() {
     if (carouselRef.current && hasAnimated) {
       const scrollContainer = carouselRef.current.querySelector('.scroll-container');
       if (scrollContainer) {
-        // Get the actual scrollable width (all 3 sets of images)
+        // Get the actual scrollable width (all images)
         const totalScrollWidth = scrollContainer.scrollWidth;
-        // We need to scroll enough to reveal one complete set + container width
+        // We need to scroll enough to reveal all images + container width
         const containerWidth = carouselRef.current.offsetWidth;
-        // Calculate the width needed to scroll through one full set
-        const singleSetWidth = (totalScrollWidth / 3) + containerWidth;
+        // Calculate the width needed to scroll through all images
+        const singleSetWidth = totalScrollWidth - containerWidth;
         setTotalWidth(singleSetWidth);
       }
     }
   }, [hasAnimated]);
 
-  // Start/Stop animation based on visibility
-  useEffect(() => {
-    if (totalWidth > 0) {
-      if (isInView) {
-        // Start animation when in view
-        carouselControls.start({
-          x: [0, -totalWidth],
-          transition: {
-            duration: 120,
-            ease: "linear",
-            repeat: Infinity,
-          },
-        });
-      } else {
-        // Pause animation when out of view
-        carouselControls.stop();
-      }
-    }
-  }, [totalWidth, carouselControls, isInView]);
+  // Removed auto-scroll animation - manual swipe only
 
   return (
     <>
@@ -167,56 +150,40 @@ export default function LowCode() {
               {hasAnimated && (
                 <motion.div
                   drag="x"
-                  dragConstraints={{ right: 0, left: -totalWidth }}
-                  dragElastic={0.1}
-                  dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-                  animate={carouselControls}
-                  onDragStart={() => carouselControls.stop()}
-                  onDragEnd={(event, info) => {
-                    if (totalWidth > 0 && isInView) {
-                      carouselControls.start({
-                        x: [info.offset.x, -totalWidth],
-                        transition: {
-                          duration: 120,
-                          ease: "linear",
-                          repeat: Infinity,
-                        }
-                      });
-                    }
-                  }}
+                  dragConstraints={{ right: 0, left: totalWidth > 0 ? -totalWidth : 0 }}
+                  dragElastic={0.2}
+                  dragTransition={{ bounceStiffness: 400, bounceDamping: 30 }}
                   className="flex gap-4 px-6 cursor-grab active:cursor-grabbing scroll-container"
                   style={{ width: "max-content" }}
                 >
-                  {/* Triple loop for seamless infinite scroll */}
-                  {[...Array(3)].map((_, setIndex) => (
-                    <div key={setIndex} className="flex gap-4">
-                      {allImages.map((image, idx) => (
-                        <motion.div
-                          key={idx}
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.3 }}
-                          className={`relative flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl ${
-                            image.aspect === "16/9" 
-                              ? "aspect-video w-[320px]" 
-                              : "aspect-[9/16] w-[220px]"
-                          }`}
-                        >
-                          {/* Glow Effect */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 via-transparent to-purple-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300 z-10" />
-                          
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            fill
-                            className="object-cover"
-                            quality={85}
-                            sizes="220px"
-                            loading="lazy"
-                          />
-                        </motion.div>
-                      ))}
-                    </div>
-                  ))}
+                  {/* Single set of all images for manual swipe */}
+                  <div className="flex gap-4">
+                    {allImages.map((image, idx) => (
+                      <motion.div
+                        key={idx}
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.2 }}
+                        className={`relative flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 shadow-none ${
+                          image.aspect === "16/9" 
+                            ? "aspect-video w-[320px]" 
+                            : "aspect-[9/16] w-[220px]"
+                        }`}
+                      >
+                        {/* Glow Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 via-transparent to-purple-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300 z-10" />
+                        
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          className="object-cover shadow-none"
+                          quality={85}
+                          sizes="220px"
+                          loading="lazy"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </div>
@@ -285,23 +252,31 @@ export default function LowCode() {
             
             <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: "🎨", label: "Modern Design" },
-                { icon: "🧭", label: "Better Navigation" },
-                { icon: "📱", label: "Fully Responsive" },
-                { icon: "⚡", label: "Clear CTAs" },
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center space-y-2"
-                >
-                  <div className="text-2xl">{item.icon}</div>
-                  <p className="text-xs text-gray-400 font-medium">{item.label}</p>
-                </motion.div>
-              ))}
+                { icon: Palette, label: "Modern Design", color: "from-purple-500/20 to-pink-500/20", iconColor: "text-purple-400" },
+                { icon: Compass, label: "Better Navigation", color: "from-blue-500/20 to-cyan-500/20", iconColor: "text-blue-400" },
+                { icon: Smartphone, label: "Fully Responsive", color: "from-cyan-500/20 to-blue-500/20", iconColor: "text-cyan-400" },
+                { icon: Zap, label: "Clear CTAs", color: "from-yellow-500/20 to-orange-500/20", iconColor: "text-yellow-400" },
+              ].map((item, idx) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center space-y-3 hover:border-white/20 transition-all duration-300"
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                    <div className="relative z-10 flex flex-col items-center space-y-2">
+                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center border border-white/10`}>
+                        <IconComponent className={`w-5 h-5 ${item.iconColor}`} strokeWidth={2} />
+                      </div>
+                      <p className="text-xs text-gray-300 font-medium">{item.label}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
 
