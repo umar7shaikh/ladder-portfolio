@@ -14,6 +14,14 @@ export default function Project16() {
 
   const allImages = [
     { src: "/projects/project16/ss1.png", alt: "FranzCo landing page", aspect: "16/9" },
+    { src: "/projects/project16/ss2.png", alt: "Services section", aspect: "9/16" },
+    { src: "/projects/project16/ss3.png", alt: "About us section", aspect: "16/9" },
+    { src: "/projects/project16/ss4.png", alt: "Case studies section", aspect: "9/16" },
+    { src: "/projects/project16/ss5.png", alt: "Contact form section", aspect: "16/9" },
+    { src: "/projects/project16/ss6.png", alt: "Contact form section", aspect: "16/9" },
+    
+
+
   ];
 
   // Start animation on mount for mobile

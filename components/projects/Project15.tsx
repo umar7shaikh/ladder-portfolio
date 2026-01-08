@@ -14,7 +14,12 @@ export default function Project15() {
   const [hasAnimated, setHasAnimated] = useState(false);
 
   const allImages = [
-    { src: "/projects/project15/ss1.png", alt: "Trevon app wedding plan", aspect: "9/16" },
+    { src: "/projects/project15/ss1.svg", alt: "Trevon app wedding plan", aspect: "9/16" },
+    { src: "/projects/project15/ss2.png", alt: "Trevon app event details", aspect: "9/16" },
+    { src: "/projects/project15/ss3.png", alt: "Trevon app guest list", aspect: "16/9" },
+    { src: "/projects/project15/ss4.svg", alt: "Trevon app schedule overview", aspect: "16/9" },
+
+
   ];
 
   // Intersection Observer for section visibility

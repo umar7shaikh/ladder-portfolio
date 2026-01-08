@@ -15,6 +15,14 @@ export default function Project11() {
 
   const allImages = [
     { src: "/projects/project11/ss1.png", alt: "Educationist.ai dashboard", aspect: "16/9" },
+    { src: "/projects/project11/ss2.png", alt: "Course creation screen", aspect: "9/16" },
+    { src: "/projects/project11/ss3.png", alt: "Quiz interface", aspect: "16/9" },
+    { src: "/projects/project11/ss4.png", alt: "Personalized career paths", aspect: "9/16" },
+    { src: "/projects/project11/ss5.png", alt: "Mobile dashboard view", aspect: "9/16" },
+    { src: "/projects/project11/ss6.png", alt: "Mobile dashboard view", aspect: "9/16" },
+    { src: "/projects/project11/ss7.png", alt: "Mobile dashboard view", aspect: "9/16" },
+    { src: "/projects/project11/ss8.png", alt: "Mobile dashboard view", aspect: "9/16" },
+    
   ];
 
   // Intersection Observer for section visibility

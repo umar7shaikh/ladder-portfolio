@@ -15,6 +15,11 @@ export default function Project12() {
 
   const allImages = [
     { src: "/projects/project12/ss1.png", alt: "RF Installations website", aspect: "16/9" },
+    { src: "/projects/project12/ss2.png", alt: "Services overview", aspect: "9/16" },
+    { src: "/projects/project12/ss3.png", alt: "Project portfolio", aspect: "16/9" },
+    { src: "/projects/project12/ss4.png", alt: "About us section", aspect: "9/16" },
+    { src: "/projects/project12/ss5.png", alt: "Contact page", aspect: "16/9" },
+    { src: "/projects/project12/ss6.png", alt: "Blog articles section", aspect: "9/16" },
   ];
 
   // Intersection Observer for section visibility

@@ -15,6 +15,11 @@ export default function Project14() {
 
   const allImages = [
     { src: "/projects/project14/ss1.png", alt: "Enessa Foods website", aspect: "16/9" },
+    { src: "/projects/project14/ss2.png", alt: "Product showcase page", aspect: "9/16" },
+    { src: "/projects/project14/ss3.png", alt: "Ingredients solutions page", aspect: "16/9" },
+    { src: "/projects/project14/ss4.png", alt: "Client testimonials page", aspect: "16/9" },
+    { src: "/projects/project14/ss5.png", alt: "Industry blog section", aspect: "9/16" },
+    { src: "/projects/project14/ss6.png", alt: "Insights and footer section", aspect: "16/9" },
   ];
 
   // Intersection Observer for section visibility

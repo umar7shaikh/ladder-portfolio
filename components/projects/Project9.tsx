@@ -16,6 +16,13 @@ export default function Project9() {
   const allImages = [
     { src: "/projects/project9/ss1.png", alt: "Q8 Car Wash splash screen", aspect: "9/16" },
     { src: "/projects/project9/ss2.png", alt: "Q8 Car Wash home screen", aspect: "9/16" },
+    { src: "/projects/project9/ss3.png", alt: "Service selection screen", aspect: "16/9" },
+    { src: "/projects/project9/ss4.png", alt: "Booking confirmation screen", aspect: "16/9" },
+    { src: "/projects/project9/ss6.png", alt: "User profile and history", aspect: "9/16" },
+    { src: "/projects/project9/ss7.png", alt: "ss7", aspect: "9/16" },
+    { src: "/projects/project9/ss8.svg", alt: "ss8", aspect: "9/16" }
+    
+     
   ];
 
   // Intersection Observer for section visibility

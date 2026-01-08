@@ -16,6 +16,13 @@ export default function Project10() {
   const allImages = [
     { src: "/projects/project10/ss1.png", alt: "SalahMate splash screen", aspect: "9/16" },
     { src: "/projects/project10/ss2.png", alt: "SalahMate login screen", aspect: "9/16" },
+    { src: "/projects/project10/ss3.png", alt: "SalahMate home screen", aspect: "16/9" },
+    { src: "/projects/project10/ss4.png", alt: "SalahMate prayer times screen", aspect: "16/9" },
+    { src: "/projects/project10/ss5.png", alt: "SalahMate qibla finder screen", aspect: "16/9" },
+    { src: "/projects/project10/ss6.png", alt: "SalahMate settings screen", aspect: "9/16" },
+    { src: "/projects/project10/ss7.png", alt: "SalahMate settings screen", aspect: "9/16" },
+    { src: "/projects/project10/ss8.png", alt: "SalahMate settings screen", aspect: "9/16" },
+
   ];
 
   // Intersection Observer for section visibility

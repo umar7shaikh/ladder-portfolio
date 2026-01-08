@@ -16,6 +16,10 @@ export default function Project8() {
   const allImages = [
     { src: "/projects/project8/ss1.png", alt: "VMIT website homepage", aspect: "9/16" },
     { src: "/projects/project8/ss2.png", alt: "Strategic services", aspect: "9/16" },
+    { src: "/projects/project8/ss3.png", alt: "Consulting solutions", aspect: "16/9" },
+    { src: "/projects/project8/ss4.png", alt: "Client success stories", aspect: "16/9" },
+    { src: "/projects/project8/ss5.png", alt: "Contact and lead generation", aspect: "9/16" },
+
   ];
 
   // Intersection Observer for section visibility

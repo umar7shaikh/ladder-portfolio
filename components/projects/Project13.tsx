@@ -14,9 +14,20 @@ export default function Project13() {
   const [hasAnimated, setHasAnimated] = useState(false);
 
   const allImages = [
-    { src: "/projects/project13/ss1.png", alt: "HNH app home screen", aspect: "9/16" },
+    { src: "/projects/project13/ss1.svg", alt: "HNH app home screen", aspect: "9/16" },
     { src: "/projects/project13/ss2.png", alt: "HNH timeline", aspect: "9/16" },
     { src: "/projects/project13/ss3.png", alt: "HNH consultation", aspect: "9/16" },
+    { src: "/projects/project13/ss4.png", alt: "HNH booking screen", aspect: "16/9" },
+    { src: "/projects/project13/ss5.png", alt: "HNH medical records", aspect: "16/9" },
+    { src: "/projects/project13/ss6.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss7.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss8.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss9.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss10.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss11.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss12.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss13.png", alt: "HNH navigation menu", aspect: "9/16" },
+    { src: "/projects/project13/ss14.png", alt: "HNH navigation menu", aspect: "9/16" },
   ];
 
   // Intersection Observer for section visibility
