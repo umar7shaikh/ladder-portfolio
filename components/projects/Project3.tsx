@@ -16,6 +16,9 @@ export default function Project3() {
   const allImages = [
     { src: "/projects/project3/ss1.png", alt: "Quick Servicess homepage", aspect: "9/16" },
     { src: "/projects/project3/ss2.png", alt: "Services overview section", aspect: "9/16" },
+    { src: "/projects/project3/ss3.png", alt: "Booking interface", aspect: "16/9" },
+    { src: "/projects/project3/ss4.png", alt: "User dashboard", aspect: "16/9" },
+
   ];
 
   // Intersection Observer for section visibility

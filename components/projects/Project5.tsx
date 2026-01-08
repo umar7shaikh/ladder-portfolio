@@ -16,6 +16,8 @@ export default function Project5() {
   const allImages = [
     { src: "/projects/project5/ss1.png", alt: "MarketMingle homepage", aspect: "9/16" },
     { src: "/projects/project5/ss2.png", alt: "Services and solutions", aspect: "9/16" },
+    { src: "/projects/project5/ss3.png", alt: "Client testimonials", aspect: "16/9" },
+    { src: "/projects/project5/ss4.png", alt: "Contact and lead generation", aspect: "16/9" },
   ];
 
   // Intersection Observer for section visibility

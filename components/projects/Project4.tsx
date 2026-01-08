@@ -16,6 +16,9 @@ export default function Project4() {
   const allImages = [
     { src: "/projects/project4/ss1.png", alt: "MeetMyPets homepage", aspect: "9/16" },
     { src: "/projects/project4/ss2.png", alt: "Pet profiles and features", aspect: "9/16" },
+    { src: "/projects/project4/ss3.png", alt: "Social feed and interactions", aspect: "16/9" },
+    { src: "/projects/project4/ss4.png", alt: "Messaging and community", aspect: "16/9" },
+    
   ];
 
   // Intersection Observer for section visibility

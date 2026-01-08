@@ -15,6 +15,11 @@ export default function Project7() {
   const allImages = [
     { src: "/projects/project7/ss1.png", alt: "Indo Group homepage", aspect: "9/16" },
     { src: "/projects/project7/ss2.png", alt: "Property showcase", aspect: "9/16" },
+    { src: "/projects/project7/ss3.png", alt: "Services overview", aspect: "16/9" },
+    { src: "/projects/project7/ss4.png", alt: "Client testimonials", aspect: "16/9" },
+    { src: "/projects/project7/ss5.png", alt: "About Us section", aspect: "9/16" },
+    { src: "/projects/project7/ss6.png", alt: "Contact information", aspect: "9/16" },
+    { src: "/projects/project7/ss7.png", alt: "Location and map section", aspect: "16/9" },
   ];
 
   // Intersection Observer for section visibility
