@@ -1,11 +1,21 @@
 // components/HeroSection.tsx
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function HeroSection() {
+  useEffect(() => {
+    // Set custom cursor on mount
+    document.body.style.cursor = 'url(/ladder.svg) 16 16, auto';
+  }, []);
+
   return (
-    <section className="relative min-h-screen w-full bg-black overflow-hidden flex flex-col items-center justify-center px-4">
+    <section 
+      className="relative min-h-screen w-full bg-black overflow-hidden flex flex-col items-center justify-center px-4"
+      style={{
+        cursor: 'url(/ladder.svg) 16 16, auto'
+      }}
+    >
       {/* Dotted Background */}
       <div 
         className="absolute inset-0 opacity-30"
@@ -53,6 +63,9 @@ export default function HeroSection() {
         <div className="inline-block">
           <button 
             className="px-8 py-3 rounded-full bg-[#D8F209] border border-[#D8F209] shadow-[0_0_30px_rgba(216,242,9,0.6)] hover:shadow-[0_0_40px_rgba(216,242,9,0.8)] transition-all duration-300 hover:scale-105"
+            style={{
+              cursor: 'url(/ladder.svg) 16 16, pointer'
+            }}
             onClick={() => {
               document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
             }}
