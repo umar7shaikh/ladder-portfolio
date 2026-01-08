@@ -18,7 +18,7 @@ export default function Project16() {
     { src: "/projects/project16/ss3.png", alt: "About us section", aspect: "16/9" },
     { src: "/projects/project16/ss4.png", alt: "Case studies section", aspect: "9/16" },
     { src: "/projects/project16/ss5.png", alt: "Contact form section", aspect: "16/9" },
-    { src: "/projects/project16/ss6.png", alt: "Contact form section", aspect: "16/9" },
+    // { src: "/projects/project16/ss6.png", alt: "Contact form section", aspect: "16/9" },
     
 
 
