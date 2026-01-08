@@ -15,10 +15,12 @@ import Project13 from "@/components/projects/Project13";
 import Project14 from "@/components/projects/Project14";
 import Project15 from "@/components/projects/Project15";
 import Project16 from "@/components/projects/Project16";
+import HeroSection from "@/components/hero/HeroSection";
 
 export default function Home() {
   return (
     <>
+      <HeroSection />
       <DansJamSection />
       <LowCode />
       <Project3 />

@@ -404,7 +404,7 @@ export default function Project8() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="absolute top-[5vh] left-[5vw] z-10"
+            className="absolute top-[2vh] left-[5vw] z-10"
           >
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-yellow-500/20 blur-[100px] rounded-full -z-10 pointer-events-none" />
             <div className="inline-block px-[2vw] py-[1vh] rounded-full bg-white border border-gray-200">
