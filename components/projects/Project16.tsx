@@ -407,7 +407,7 @@ export default function Project16() {
             className="absolute top-[5vh] left-[5vw] z-10"
           >
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-red-500/20 blur-[100px] rounded-full -z-10 pointer-events-none" />
-            <div className="inline-block px-[2vw] py-[1vh] rounded-full bg-white border border-gray-200">
+            <div className="relative inline-block px-[2vw] py-[1vh] rounded-full bg-[#D8F209] border border-[#D8F209] shadow-lg shadow-[#D8F209]/60">
               <span className="text-black font-medium text-[clamp(11px,1vw,15px)]">
                 FranzCo Landing Page
               </span>
@@ -461,7 +461,7 @@ export default function Project16() {
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-500/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
               
               <div className="space-y-[3vh]">
-                <div className="inline-block px-[2vw] py-[1vh] rounded-full bg-white border border-gray-200">
+                <div className="relative inline-block px-[2vw] py-[1vh] rounded-full bg-[#D8F209] border border-[#D8F209] shadow-lg shadow-[#D8F209]/60">
                   <span className="text-black font-medium text-[clamp(11px,1vw,15px)]">
                     FranzCo Landing Page
                   </span>
